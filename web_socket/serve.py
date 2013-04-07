@@ -35,6 +35,9 @@ requires an authentication. Therefore, it redirects to the
 LoginHandler, if no user is found in the cookie
 """
 class MainHandler(tornado.web.RequestHandler):
+    def get_current_user(self):
+        return self.get_secure_cookie("user")
+
     @tornado.web.authenticated
     def get(self):
         tempusers=dict()
